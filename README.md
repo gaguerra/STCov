@@ -1,12 +1,12 @@
 # STCov
 
-STCov is a program for calculating statistics (mean, variance, covariance, shared branch length) of pairwise coalescence times given a rooted, bifurcating species tree using the multi-species coalescent.
+STCov (Species Tree Covariance) is an easy-to-use program for calculating statistics (mean, variance, covariance, shared branch length) of pairwise coalescence times given a rooted, bifurcating species tree using the multi-species coalescent.
 
 ## Installation Instructions
 
 STCov is implemented in C++ (a precompiled binary is not yet added to this github, but will be added soon). 
 
-If you choose to build the software from scratch, follow the build instructions below
+If you choose to build the software from scratch, follow the build instructions below (currently the only way)
 
 ## Build Instructions
 
@@ -81,16 +81,16 @@ nspecies = 4
 
 STCov prints on the command line the tree read in from the configuration file. Verify that this tree accurately represents the one provided in the config file. 
 
-For a provided number of species, ```N```, STCov assumes a total of 4 individuals from each species have been sampled. These individuals are labeled using ```a```,```b```,```c```,```d``` as subscripts of their species of origin. For example, the first individual from species 2 has the label ```2_a```. We assume all individuals are interchangeable. 
+For a provided number of species, ```N```, STCov assumes a total of 4 individuals from each species have been sampled. These individuals are labeled using ```a```,```b```,```c```,```d``` as subscripts of their species of origin. For example, the first individual from species 2 has the label ```2_a```. We assume all individuals within a species are interchangeable. 
 
 As STCov calculates statistics of pairwise coalescence times, each pair is indexed using a comma separated list of their names, e.g. ```1_b, 5_c```. 
 
 There are 4 files output by STCov
 
-* ```Labels.txt``` used to read the next 3 files, is a list of all pairs of individuals and their row/column index in the data files. There are (```N choose 2```) possible pairings of indiviudals, which is the number of rows in this file.  
+* ```Labels.txt``` used to read the next 3 files, is a list of all pairs of individuals and their row/column index in the data files. There are (```N choose 2```) possible pairings of individuals, which is the number of rows in this file.  
 * ```Means.txt``` outputs the expected time to coalescence for a each pair of individuals conditional on the species tree from the configuration file. 
 * ```Covariance.txt``` outputs the variance/covariance matrix between time to coalesce for two pairs of individuals. The diagonal corresponds to the variance in coalescence time for a given pair, and the off diagonal corresponds to covariances. Use the ```Labels.txt``` file as the index for both the rows and columns of this file. 
-* ```SharedBranchLength.txt``` outputs the expected amount of shared branch length between two pairs of indiviudals. The diagonal corresponds to 2 times the expected time to coalescence for an individual pair. Use the ```Labels.txt``` file as the index for both the rows and columns of this file. 
+* ```SharedBranchLength.txt``` outputs the expected amount of shared branch length between two pairs of individuals. The diagonal corresponds to 2 times the expected time to coalescence for an individual pair. Use the ```Labels.txt``` file as the index for both the rows and columns of this file. 
 
 ### Interpreting the output file, and example. 
 
